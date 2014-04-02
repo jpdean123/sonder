@@ -1,0 +1,12 @@
+<h1>List of Items</h1>
+
+<div class="container">
+	<div id="modal" class="modalDialog"></div>
+       <div id="item_list" class="row">
+       	  Name:<input type="text" ng-model="sort"> {{ sort }}
+            <div class="row singleitem" ng-repeat="item in items  | filter:sort">
+            <p>{{ item.get('itemText') }}</p>
+            <strong>By: {{ item.get('by') }}</strong>
+            </div>
+       </div>
+</div>

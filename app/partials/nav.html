@@ -1,0 +1,23 @@
+<div id="maintitle">Sonder</div>
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom" role="navigation" ng-controller="NavbarCtrl">
+
+    <div id="navbar-custom-left">
+      <ul class="nav navbar-nav navbar-custom-left">
+      	<li ng-class="{active:isActive('/mapview')}"><a href="#/mapview">Map View</a></li>
+        <li ng-class="{active:isActive('/topplaces')}"><a href="#/topplaces">Top Places</a></li>
+        <li ng-class="{active:isActive('/addlocation')}"><a href="#/addlocation">Add Location</a></li>
+      </ul>
+    </div>
+
+    <div id="navbar-custom-right">
+      <ul class="nav navbar-nav">
+        <li><a href="#/userpage">{{currentUser.get('name')}}</a></li>
+        <li ng-hide="isLoggedIn()"><button type="button" class="btn btn-success navbar-btn" onclick="location.href='#/login'">Sign In</button>
+        <form></li>
+          <li ng-show="isLoggedIn()"><button type="submit" ng-click="logOut()" class="btn btn-danger navbar-btn">Sign Out</button>
+         </form></li>
+      	
+      </ul>
+    </div>
+
+</nav>

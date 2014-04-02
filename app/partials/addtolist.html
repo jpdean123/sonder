@@ -1,0 +1,20 @@
+<h1>Add to List</h1>
+<div class="container">
+       Name:
+       <input type="text" ng-model="sort"> {{ sort }}
+       <ul>
+          <li ng-repeat="person in people | filter:sort | orderBy: 'name'">{{ person.name }}- {{ person.age }}</li>
+       </ul>
+
+    <br>
+
+  <h3> Add New Person</h3> <br>
+   Person Name:
+   <input type="text" ng-model="newPerson.name"><br>
+   Age:
+   <input type="text" ng-model="newPerson.age">
+   <br>
+   <button ng-click="addPerson()">Add Person</button>
+   <a href="#/data_list">Click Here to view all people</a>
+
+</div>

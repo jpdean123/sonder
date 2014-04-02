@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demoApp">
+  <head>
+   <title>Sonder</title>
+    <link href="./css/bootstrap.css" rel="stylesheet"> 
+    <link href="./css/style.css" rel="stylesheet">  
+    
+
+    <script type="text/javascript" src="./lib/angular/angular.js"></script>
+    <script type="text/javascript" src="./lib/angular/angular-route.js"></script>
+   
+    
+    
+   
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script src="//www.parsecdn.com/js/parse-1.2.17.min.js"></script>
+    <script> 
+    Parse.initialize("3vwg3bbV9K9AxcJixrVTLZvt9wXWnbZwS1Cb9T5F", "O08YI32BivYosN5yQhCkKqp5AmB7czRgj8rayzi7");
+    </script>
+
+
+    <script type="text/javascript" src="./services/services.js"></script>
+    <script type="text/javascript" src="./controllers/controllers.js"></script>
+
+    <!-- Google Maps scripts start-->
+
+     <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVdPFHVhAjLlAqCsNDC48dtAtOuj6u6Sc&sensor=false">
+    </script>
+    
+    
+    <script type="text/javascript" src="./js/underscore.js"></script>
+    <script type="text/javascript" src="./js/angular-google-maps.js"></script>
+    <!-- Google Maps script end-->
+
+  </head>
+
+  <body ng-init="init()">
+
+   <div ng-include src="'./partials/nav.html'"></div>
+    <div>
+      <!--placeholder for the views-->
+      <div ng-view="" id="partialsholder"></div>
+    </div>
+    <div ng-include src="'./partials/footer.html'"></div>
+
+  
+  </body>
+
+</html>

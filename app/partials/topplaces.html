@@ -1,0 +1,27 @@
+<div class="container halfpage">
+	<h3>All Locations</h3>
+</div>
+<div class="container halfpage">
+      <h3>Your Locations</h3>
+	<div>
+      View the last <input type ="number" class="numb_input_small" ng-model="quantity" ng-init="quantity=startQ" id="quantity_filter" min="0"/> locations
+      View Locations within <input type ="number" class="numb_input_small" id="range_input" min="0" value="10"/> miles of
+      
+      <input type="number" id="centerlatitude" placeholder="latitude" ng-init="value=startLat"/>,
+      <input type="number" id="centerlongitude" placeholder="longitude" ng-init="value=startLong"/>
+       <br><br>
+            <table class="table table-bordered table-hover">
+                  <tr>
+                        <th>Location Name</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                  </tr> 
+                  <tr ng-repeat="location in locations| withinRange | limitTo: quantity">
+                        <td>{{ location.get('Name') }}</td>
+                        <td>{{ location.get('latitude') }}</td>
+                        <td>{{ location.get('longitude') }}</td>
+                  </tr>
+
+            </table>
+      </div>
+</div>

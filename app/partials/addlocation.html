@@ -1,0 +1,40 @@
+
+<div class="container halfpage">
+	<h1>Add Location</h1>
+  <p>Tip: Name your location, then move the marker in the map where you want your location to be  </p>
+        <form>
+          <input type="text" ng-model="entry.name" class="form-control" id="locationName" placeholder="Name of Place">
+          <br>
+          <input class="btn btn-primary btn-lg btn-block" type="submit" ng-click="addLocation(); reset()" value="Add Location">
+          <br>
+
+        </form>
+        <google-map center="map.center" zoom="map.zoom" draggable="true">
+        <marker coords="annArbor.coords" options="annArbor.options" events="annArbor.events">
+          
+        </marker>
+
+
+      </google-map>
+
+    
+</div>
+
+<div class="container halfpage">
+       <div>
+            <div>
+            <table class="table">
+                  <tr>
+                        <th>Location Name</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                  </tr> 
+                  <tr ng-repeat="location in locations">
+                        <td>{{ location.get('Name') }}</td>
+                        <td>{{ location.get('latitude') }}</td>
+                        <td>{{ location.get('longitude') }}</td>
+                  </tr>
+
+            </table>
+            </div>
+</div>

@@ -1,0 +1,13 @@
+
+
+
+<!--Map Div-->
+<div class="container single_map"  ng-init="init()"> 
+	<h4>Map of Locations</h4>
+	<google-map center="map.center" zoom="map.zoom" draggable="true">
+        <markers models="testMarkers" coords="'self'" fit="true" docluster="true">	
+        </markers>
+
+
+      </google-map>
+</div>
