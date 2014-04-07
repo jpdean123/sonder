@@ -210,6 +210,9 @@ demoApp.controller('addlocation', ['$scope', function ($scope, $q) {
 
         };
 
+
+
+
     
 
 
@@ -405,7 +408,7 @@ demoApp.controller('topPlacesCtrl', ['$scope', function ($scope, $q) {
 
 
 
-demoApp.controller('mapviewCtrl', ['$scope', function ($scope) {
+demoApp.controller('mapviewCtrl', function ($scope, $timeout) {
 
     $scope.init = function(){
           $scope.currentuser = Parse.User.current();
@@ -428,10 +431,8 @@ demoApp.controller('mapviewCtrl', ['$scope', function ($scope) {
 
             query.find({
               success: function(results) {
-                console.log(results);
-                $scope.testMarkers;
-                $scope.$apply();
-               return results;
+                //console.log(results);
+                $scope.userMarkers = results;
               },
               error: function(error){
                 console.log(error.message);
@@ -463,16 +464,45 @@ demoApp.controller('mapviewCtrl', ['$scope', function ($scope) {
 
 
       var testLocations = [
-        {latitude: '42.11111111', longitude: '-83.777777', name: 'Item 1'},
-        {latitude: '43.11111111', longitude: '-84.777777', name: 'Item 2'},
-        {latitude: '41.11111111', longitude: '-82.777777', name: 'Item 3'}
+        {latitude: 42.11111111, longitude: -83.777777, name: 'Item 1'},
+        {latitude: 43.11111111, longitude: -84.777777, name: 'Item 2'},
+        {latitude: 41.11111111, longitude: -82.777777, name: 'Item 3'}
 
       ];
 
-      /*$scope.testMarkers = testLocations;*/
+
+      //$timeout(function() {
+          $scope.testLocations = testLocations;
+          //console.log('Locations are available now')
+
+    //  }, 2000);
+
+   getUserLocations = function getUserLocations() {
+            
+            var Locations = Parse.Object.extend("Locations");
+            var query = new Parse.Query(Locations);
+        
+            //query.descending("createdAt");
+            //query.equalTo("user", $scope.currentuser);
+
+            query.find({
+              success: function(results) {
+                $scope.userLocations = results;
+                console.log(results);
+               
+              },
+              error: function(error){
+                console.log(error.message);
+              } 
+
+            });
+
+          }; 
+   getUserLocations();
+    
 
 
-}]);
+});
 
 
 demoApp.controller('NavbarCtrl', ['$scope','$location', function ($scope, $location) {
@@ -519,17 +549,59 @@ demoApp.filter('withinRange', function() {
 
 //below is the test controller for the testing page
 
-demoApp.controller('testCtrl', ['$scope', function ($scope) {    //<-- please note the first '$scope'
+demoApp.controller('testCtrl', function ($scope, $q, $timeout, $interval) {    //<-- please note the first '$scope'
   
-   $scope.people = [
+   peopleList = [
           { name: 'Will', age: '30' },
           { name:'Jack', age:'26' },
           { name: 'Nadine', age: '21' },
           { name:'Zach', age:'28' }
         ];  
   
+var manualDefer = $q.defer();
+manualDefer.promise.then(function(resolvedWith) {
+  $scope.people = resolvedWith;
+  console.log(resolvedWith);
+}, function(rejectedWith) {
+      console.log('not happening in a success');
+}); 
 
-}]);
+$timeout(function() {
+  manualDefer.resolve(peopleList);
+}, 2000);
+
+
+var parseDefer = $q.defer();
+parseDefer.promise.then(function(testResolve){
+  $scope.testPeople = testResolve;
+}, function(testRejected){
+    console.log('error')
+});
+
+
+getTestData = function getTestData() {
+            
+            var Testing = Parse.Object.extend("Testing");
+            var query = new Parse.Query(Testing);
+        
+            query.descending("createdAt");
+
+            query.find({
+              success: function(results) {
+                console.log(results);
+                $scope.testPeople = results;
+              },
+              error: function(error){
+                console.log(error.message);
+              } 
+
+            });
+
+          }; 
+getTestData();
+
+//these are the closing for the whole app do not delete!!!
+});
 
 
 

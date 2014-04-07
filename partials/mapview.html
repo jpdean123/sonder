@@ -1,0 +1,14 @@
+
+
+
+<!--Map Div-->
+<div class="container single_map"  ng-init="init()"> 
+	<h4>Map of Locations</h4>
+	
+	<google-map center="map.center" zoom="map.zoom" draggable="true">
+		<span ng-if="userLocations !== undefined"> <!--span waits for Markers to load from Parse.com-->
+        	<markers models="userLocations" coords="'attributes'" fit="true" docluster="true">	
+        	</markers>
+        </span>
+     </google-map>
+</div>
